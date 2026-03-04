@@ -1,1 +1,83 @@
-<p>login.component works!</p>
+<div class="flex items-center justify-center min-h-screen">
+  <p-card styleClass="w-full max-w-[480px]">
+    <h2 class="text-[22px] font-semibold text-center mb-4 text-[var(--color_1)]">Login</h2>
+    <p class="text-center text-sm mb-[14px] font-medium text-[var(--color_16)]">
+      Manage your bookings and services in one place.
+    </p>
+
+    <ul class="mb-4 border border-[var(--color_17)] rounded-full flex items-center gap-[6px] p-1">
+      <li
+        class="flex-1 py-3 text-center rounded-full font-normal text-[13px] cursor-pointer !font-normal text-[var(--color_1)] hover:bg-[var(--color_18)]"
+        (click)="toggleTab('mobile')"
+        [ngClass]="{'!bg-[var(--color_3)] text-white font-normal': activeTab === 'mobile'}">
+        MOBILE NUMBER
+      </li>
+      <li
+        class="flex-1 py-3 text-center rounded-full font-normal text-[13px] cursor-pointer !font-normal text-[var(--color_1)] hover:bg-[var(--color_18)]"
+        (click)="toggleTab('username')"
+        [ngClass]="{'!bg-[var(--color_3)] text-white font-normal': activeTab === 'username'}">
+        USER NAME
+      </li>
+      <li
+        class="flex-1 py-3 text-center rounded-full font-normal text-[13px] cursor-pointer !font-normal text-[var(--color_1)] hover:bg-[var(--color_18)]"
+        (click)="toggleTab('sso')" [ngClass]="{'!bg-[var(--color_3)] text-white font-normal': activeTab === 'sso'}">
+        SSO LOGIN
+      </li>
+    </ul>
+
+    <div class="separator"></div>
+
+    <ng-container *ngIf="activeTab === 'mobile'">
+      <form #loginForm="ngForm" (ngSubmit)="loginByMobileNumber()">
+        <div class="form_group relative">
+          <label for="mobileNumber" class="form_label absolute left-4 bg-white px-[6px] -top-[10px]">Mobile
+            Number</label>
+          <input id="mobileNumber" type="mobileNumber" name="mobileNumber" pInputText
+            class="form_control !py-[18px] !px-[20px]" placeholder="Enter Mobile Number" required />
+        </div>
+
+        <!-- <div class="form_group">
+            <label for="password" class="form_label">Password</label>
+            <input id="password" type="password" name="password" pInputText class="form_control !py-[18px] !px-[20px]"
+              placeholder="Enter Password" required />
+          </div> -->
+
+        <p-button type="submit" label="SEND" styleClass="button button_primary" />
+      </form>
+    </ng-container>
+
+    <ng-container *ngIf="activeTab === 'username'">
+      <form #loginForm="ngForm">
+        <div class="form_group relative">
+          <label for="username" class="form_label absolute left-4 bg-white px-[6px] -top-[10px]">Username</label>
+          <input id="username" type="username" name="username" pInputText class="form_control !py-[18px] !px-[20px]"
+            required />
+        </div>
+
+        <div class="form_group relative">
+          <label for="password" class="form_label absolute left-4 bg-white px-[6px] -top-[10px]">Password</label>
+          <input id="password" type="password" name="password" pInputText class="form_control !py-[18px] !px-[20px]"
+            required />
+        </div>
+
+        <div class="form_group text-right">
+          <p-button label="Forgot Password?" severity="primary" link styleClass="forgot_password_link" />
+        </div>
+
+        <p-button type="submit" label="LOG IN" styleClass="button button_primary" />
+      </form>
+    </ng-container>
+
+    <ng-container *ngIf="activeTab === 'sso'">
+      <form #loginForm="ngForm">
+        <div class="form_group relative">
+          <label for="username" class="form_label absolute left-4 bg-white px-[6px] -top-[10px]">SSO Login</label>
+          <input id="username" type="username" name="username" pInputText
+            class="form_control !py-[18px] !px-[20px] !py-[18px] !px-[20px]" required />
+        </div>
+
+        <p-button type="submit" label="LOG IN" styleClass="button button_primary" />
+      </form>
+    </ng-container>
+  </p-card>
+</div>
