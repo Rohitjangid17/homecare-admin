@@ -8,7 +8,7 @@ export const PAGES_ROUTES: Routes = [
     component: PagesLayoutComponent,
     children: [
       { path: "dashboard", component: DashboardComponent },
-      { path: "", redirectTo: "home", pathMatch: "full" }
+      { path: "", redirectTo: "dashboard", pathMatch: "full" }
     ]
   }
 ];
